@@ -1,6 +1,6 @@
 # LoRa-Mesh
 
-LoRa Network for air quality monitoring. :contentReference[oaicite:1]{index=1}
+LoRa Network for air quality monitoring. 
 
 This repository contains Arduino IDE sketches for building a small LoRa-based multi-node network (2–3 nodes) using **STM32 Nucleo boards + SX1276MB1MAS LoRa shields**, intended for resilient sensor data transmission (e.g., temperature / air-quality style telemetry).
 
@@ -15,7 +15,7 @@ In remote monitoring deployments, a single cellular (4G) link can become a singl
 ## Repository Structure
 
 - `Transmitters/` — sender-side sketches (sensor read + LoRa transmit)  
-- `Receivers/` — receiver-side sketches (LoRa receive + print RSSI/SNR, optional ACK/failover) :contentReference[oaicite:2]{index=2}
+- `Receivers/` — receiver-side sketches (LoRa receive + print RSSI/SNR, optional ACK/failover) =
 
 > Tip: Keep one sketch per node (Node1 / Node2 / Node3) so you can upload the correct role to each board easily.
 
