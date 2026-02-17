@@ -6,7 +6,7 @@ This repository contains Arduino IDE sketches for building a small LoRa-based mu
 
 ---
 
-## Overview
+## Project Overview
 
 In remote monitoring deployments, a single cellular (4G) link can become a single point of failure. This project demonstrates a **backup LoRa network** where a sensor node can transmit data to a nearby receiver node, and the design can be extended to support **multi-hop relay** and **failover** (backup receiver path when the primary receiver is unavailable).
 
@@ -77,6 +77,16 @@ TMP36 (flat face towards you):
 - **Normal case:** Node1 → Node2  
 - **Failover case (Node2 down):** Node1 → Node3
 
+### Recommended Approach (ACK-based)
+To detect a failed primary receiver, implement an **ACK** mechanism:
+
+- Node1 sends DATA to Node2 and waits for `ACK`
+- If ACK not received within a timeout, Node1 sends the **same packet** to Node3
+
+This keeps the system resilient and reduces data loss during outages.
+
+> Improvement: Use `packetId` + duplicate filtering at Node3 to avoid logging the same message twice if Node2 recovers mid-stream.
+
 ---
 
 ## Message Format (Suggested)
@@ -116,7 +126,3 @@ Example:
 - Encryption/authentication for payload integrity
 
 ---
-
-## License
-
-Add a license if you plan to share this publicly (MIT is common for Arduino projects).
